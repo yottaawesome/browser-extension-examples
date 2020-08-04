@@ -1,8 +1,8 @@
-# Chrome native messaging example
+# Chrome native messaging example (Windows)
 
 ## Introduction
 
-The C++ client is based on ForrestFeng's [ChromeExtension](https://github.com/ForrestFeng/ChromeExtension) repo, the [native messaging Chrome documentation](https://developer.chrome.com/extensions/nativeMessaging), and the Chromium's repo's own [native messaging example](https://github.com/chromium/chromium/tree/master/chrome/common/extensions/docs/examples/api/nativeMessaging).
+This demonstrates how to achieve communication between a Chrome extension and a native C++ client on the Windows platform. The source code contained in this example is based on ForrestFeng's [ChromeExtension](https://github.com/ForrestFeng/ChromeExtension) repo, the [native messaging Chrome documentation](https://developer.chrome.com/extensions/nativeMessaging), and the Chromium's repo's own [native messaging example](https://github.com/chromium/chromium/tree/master/chrome/common/extensions/docs/examples/api/nativeMessaging).
 
 ## Using this source code
 
