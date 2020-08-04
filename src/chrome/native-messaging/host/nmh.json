@@ -1,7 +1,7 @@
 {
     "name": "com.billy.extension.nativemessaging",
     "description": "Native messaging example",
-    "path": "build\\debug\\cpp-host.exe",
+    "path": "build\\Debug\\cpp-host.exe",
     "type": "stdio",
     "allowed_origins": [
         "chrome-extension://knldjmfmopnpolahpmmgbagdohdnhkik/"
