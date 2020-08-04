@@ -6,7 +6,8 @@ The C++ client is based on ForrestFeng's [ChromeExtension](https://github.com/Fo
 
 ## Using this source code
 
-1. Run the `install-host.bat` from an elevated command prompt or PowerShell window.
+1. Run the `install-host.bat` batch file from an elevated command prompt or PowerShell window.
 2. Open the `cpp-host.sln` in Visual Studio and build the solution.
 3. Install the unpacked extension in `app` from your Chrome's `chrome://extensions/` window.
 4. Open `chrome://apps/` in Chrome, click the `Native Messaging Example` and interact with the app.
+5. To uninstall the extension, run the `uninstall-host.bat` file from an elevated command prompt or PowerShell window.
