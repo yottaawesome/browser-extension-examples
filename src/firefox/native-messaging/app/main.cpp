@@ -74,14 +74,14 @@ int main(int argc, char** args)
 
 
 		//uncomment it to debug the messaging 
-		/*FILE* log = fopen("D:\\native.txt", "w");
-		fwrite((void*)lenBuf.u8, 1, 4, log);
-		fwrite(utf8Buffer, 1, iLen, log);
-		fclose(log);*/
+		//FILE* log = fopen("D:\\native.txt", "w");
+		//fwrite((void*)lenBuf.u8, 1, 4, log);
+		//fwrite(utf8Buffer, 1, iLen, log);
+		//fclose(log);
 
-		std::wofstream m_outputFile;
-		m_outputFile.open("log.txt", std::ios_base::app);
-		m_outputFile << L"OK" << std::endl;
+		//std::wofstream m_outputFile;
+		//m_outputFile.open("log.txt", std::ios_base::app);
+		//m_outputFile << L"OK" << std::endl;
 
 		// free resource
 		if (jsonMsg != NULL)

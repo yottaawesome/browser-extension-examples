@@ -1,0 +1,9 @@
+{
+    "name": "nativemessaging.example",
+    "description": "Native messaging example",
+    "path": "build\\Debug\\cpp-host.exe",
+    "type": "stdio",
+    "allowed_extensions": [
+        "ping_pong@example.org"
+    ]
+}
