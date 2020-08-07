@@ -93,6 +93,16 @@ int oldMain(int argc, char** args)
 	return 0;
 }
 
+void output(const std::string& output)
+{
+	unsigned int outboundLengthBuffer = output.size();
+	char outboundLengthByteBuffer[4];
+	memcpy(outboundLengthByteBuffer, &outboundLengthBuffer, sizeof(unsigned int));
+	std::cout.write(outboundLengthByteBuffer, 4);
+	std::cout.write(&output[0], output.size());
+	std::cout.flush();
+}
+
 int main(int argc, char** args)
 {
 	if (SetBinaryMode(stdin) != 0)
@@ -100,8 +110,8 @@ int main(int argc, char** args)
 	if (SetBinaryMode(stdout) != 0)
 		return -1;
 
-	//while (true)
-	//{
+	while (true)
+	{
 		char inboundLengthBuffer[4];
 		std::cin.read(inboundLengthBuffer, 4);
 		unsigned int messageLength = *reinterpret_cast<unsigned int*>(inboundLengthBuffer);
@@ -112,19 +122,12 @@ int main(int argc, char** args)
 			std::cin.read(&jsonIn[0], messageLength);
 
 			// echo the result back
-			unsigned int outboundLengthBuffer = jsonIn.size();
-			char outboundLengthByteBuffer[4];
-			memcpy(outboundLengthByteBuffer, &outboundLengthBuffer, sizeof(unsigned int));
-			std::cout.write(outboundLengthByteBuffer, 4);
-			std::cout.write(&jsonIn[0], jsonIn.size());
-			std::cout.flush();
-			//if (jsonIn == "{\"text\":\"bye\"}")
-			//{
-			//	std::string byeMessage = "{\"text\":\"cya\"}";
-			//	std::cout.write(byeMessage.c_str(), byeMessage.size());
-			//}
+			output(jsonIn);
 		}
-	//}
+
+		// Todo: figure out a proper terminating condition
+		break;
+	}
 
 	return 0;
 }
