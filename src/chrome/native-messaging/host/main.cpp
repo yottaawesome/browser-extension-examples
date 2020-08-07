@@ -4,6 +4,8 @@
 #include <iostream>
 #include <fstream>
 #include "ProcessMessage.hpp"
+#include <iostream>   // std::cout
+#include <string>     // std::string, std::to_string
 
 // Define union to read the message size easily
 typedef union {
@@ -32,10 +34,10 @@ int SetBinaryMode(FILE* file)
 	return 0;
 }
 
-int main(int argc, char** args)
+int oldMain(int argc, char** args)
 {
-    // Set "stdin" to have binary mode:
-    // https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/setmode?redirectedfrom=MSDN&view=vs-2019
+	// Set "stdin" to have binary mode:
+	// https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/setmode?redirectedfrom=MSDN&view=vs-2019
 	if (SetBinaryMode(stdin) != 0)
 		return -1;
 	if (SetBinaryMode(stdout) != 0)
@@ -87,6 +89,42 @@ int main(int argc, char** args)
 		if (jsonMsg != NULL)
 			free(jsonMsg);
 	}
+
+	return 0;
+}
+
+int main(int argc, char** args)
+{
+	if (SetBinaryMode(stdin) != 0)
+		return -1;
+	if (SetBinaryMode(stdout) != 0)
+		return -1;
+
+	//while (true)
+	//{
+		char inboundLengthBuffer[4];
+		std::cin.read(inboundLengthBuffer, 4);
+		unsigned int messageLength = *reinterpret_cast<unsigned int*>(inboundLengthBuffer);
+		if (messageLength < 1024 && messageLength > 1)
+		{
+			std::string jsonIn;
+			jsonIn.resize((size_t)messageLength);
+			std::cin.read(&jsonIn[0], messageLength);
+
+			// echo the result back
+			unsigned int outboundLengthBuffer = jsonIn.size();
+			char outboundLengthByteBuffer[4];
+			memcpy(outboundLengthByteBuffer, &outboundLengthBuffer, sizeof(unsigned int));
+			std::cout.write(outboundLengthByteBuffer, 4);
+			std::cout.write(&jsonIn[0], jsonIn.size());
+			std::cout.flush();
+			//if (jsonIn == "{\"text\":\"bye\"}")
+			//{
+			//	std::string byeMessage = "{\"text\":\"cya\"}";
+			//	std::cout.write(byeMessage.c_str(), byeMessage.size());
+			//}
+		}
+	//}
 
 	return 0;
 }
